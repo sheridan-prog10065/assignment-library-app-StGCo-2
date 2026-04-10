@@ -1,3 +1,5 @@
+using LibraryAppInteractive.BusinessLogic;
+
 namespace LibraryAppInteractive;
 
 /// <summary>
@@ -9,4 +11,49 @@ namespace LibraryAppInteractive;
 /// </summary>
 public class Library
 {
+    #region Fields
+    private List<Book> _bookList;
+    private int lidIDGeneratorSeed;
+    private const int DEFAULT_LIBID_START;
+    #endregion
+
+    #region Constructors
+    public Library()
+    {
+        _bookList = new List<Book>();
+        _libIDGeneratorSeed = 0;
+        _DEFAULT_LIBID_START = 100;
+    }
+    #endregion
+
+    #region Properties
+
+    #endregion
+
+    #region Methods
+    private void CreateDefaultBooks()
+    {
+
+    }
+
+    private int DetermineLibID()
+    {
+
+    }
+    
+    public Book RegisterBook(string bookName, string[] bookISBN, BookType bookType, int nCopies)
+    {
+
+    }
+
+    public Book FindBookByName(string bookName)
+    {
+
+    }
+
+    public Book FindBookByISBN(string bookISBN)
+    {
+
+    }
+    #endregion
 }

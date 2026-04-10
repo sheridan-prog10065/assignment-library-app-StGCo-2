@@ -9,7 +9,27 @@ namespace LibraryAppInteractive;
 public partial class LibraryAdminPage : ContentPage
 {
     public LibraryAdminPage()
-    {        
+    {
         InitializeComponent();
+    }
+
+    public LibraryBrowsePage()
+    {
+
+    }
+
+    public OnSearchBook()
+    {
+
+    }
+
+    public OnBorrowBook()
+    {
+
+    }
+
+    public OnReturnBook()
+    {
+
     }
 }
