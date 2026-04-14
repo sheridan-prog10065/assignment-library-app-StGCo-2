@@ -13,23 +13,14 @@ public partial class LibraryAdminPage : ContentPage
         InitializeComponent();
     }
 
-    public LibraryBrowsePage()
-    {
+   // public LibraryBrowsePage()
 
-    }
+    //public OnSearchBook()
 
-    public OnSearchBook()
-    {
 
-    }
+   // public OnBorrowBook()
+    
 
-    public OnBorrowBook()
-    {
+   // public OnReturnBook()
 
-    }
-
-    public OnReturnBook()
-    {
-
-    }
 }

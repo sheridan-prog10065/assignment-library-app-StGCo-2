@@ -7,14 +7,15 @@ namespace LibraryAppInteractive.BusinessLogic
     public class PaperBook : Book
     {
         #region Fields
-        private const int MAX_BORROW_DAYS;
-        private const float LATE_PENALTY_PER_DAY;
+        private int MAX_BORROW_DAYS;
+        private float LATE_PENALTY_PER_DAY;
         #endregion
 
         #region Constructors
-        public PaperBook(string bookName, string bookISBN)
+        public PaperBook(string bookName, string bookISBN) : base(bookName, bookISBN) 
         {
-
+            MAX_BORROW_DAYS = 0;
+            LATE_PENALTY_PER_DAY = 0;
         }
         #endregion
 
@@ -23,15 +24,10 @@ namespace LibraryAppInteractive.BusinessLogic
         #endregion
 
         #region Methods
-        public LibraryAsset BorrowBook()
-        {
-            return null;
-        }
+        // public LibraryAsset BorrowBook()
 
-        public TimeSpan ReturnBook(int libID)
-        {
+        // public TimeSpan ReturnBook(int libID)
 
-        }
         #endregion
     }
 }

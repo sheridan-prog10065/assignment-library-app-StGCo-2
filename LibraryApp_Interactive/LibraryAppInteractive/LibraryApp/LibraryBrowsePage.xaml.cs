@@ -7,18 +7,12 @@ public partial class LibraryBrowsePage : ContentPage
         InitializeComponent();
     }
 
-    public LibraryAdminPage()
-    {
+    // public LibraryAdminPage()
 
-    }
 
-    public OnRegisterBook()
-    {
+    // public OnRegisterBook()
 
-    }
 
-    public OnDisplayBookAssets()
-    {
+    // public OnDisplayBookAssets()
 
-    }
 }

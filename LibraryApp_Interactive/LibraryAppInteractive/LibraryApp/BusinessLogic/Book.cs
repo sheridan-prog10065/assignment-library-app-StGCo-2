@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LibraryAppInteractive.BusinessLogic
 {
-    public virtual class Book
+    public class Book
     {
         #region Fields
         protected string _bookName;
@@ -48,35 +48,23 @@ namespace LibraryAppInteractive.BusinessLogic
         #endregion
 
         #region Methods
-        public LibraryAsset CheckAvailability()
-        {
+       // public (bool, LibraryAsset) CheckAvailability()
 
-        }
 
-        public LibraryAsset BorrowBook()
-        {
+       // public LibraryAsset BorrowBook()
 
-        }
 
-        public ReturnBook(int libID)
-        {
+       // public (TimeSpan, int, decimal) ReturnBook(int libID)
 
-        }
 
-        public LibraryAsset ReserveBook()
-        {
+       // public LibraryAsset ReserveBook()
 
-        }
 
-        private LibraryAsset findLibraryAsset(int libID)
-        {
+       // private LibraryAsset FindLibraryAsset(int libID)
 
-        }
 
-        private LibraryAsset findNextAvailableAsset()
-        {
-
-        }
+      //  private LibraryAsset FindNextAvailableAsset()
+ 
         #endregion
     }
 }

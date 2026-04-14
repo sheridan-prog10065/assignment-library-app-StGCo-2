@@ -11,6 +11,7 @@ namespace LibraryAppInteractive.BusinessLogic
         private int _libID;
         private AssetStatus _status;
         private LoanPeriod _loanPeriod;
+        private bool _isAvailable;
         #endregion
 
         #region Constructors
@@ -18,8 +19,9 @@ namespace LibraryAppInteractive.BusinessLogic
         {
             _book = book;
             _libID = libID;
-            _status = null;
-            _loanPeriod = null;
+            _status = 0;
+            _loanPeriod = new LoanPeriod();
+            _isAvailable = false;
         }
         #endregion
 
@@ -46,7 +48,7 @@ namespace LibraryAppInteractive.BusinessLogic
 
         public bool IsAvailable
         {
-            get { return null; }
+            get { return _isAvailable; }
         }
         #endregion
 

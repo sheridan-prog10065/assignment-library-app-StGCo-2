@@ -13,16 +13,16 @@ public class Library
 {
     #region Fields
     private List<Book> _bookList;
-    private int lidIDGeneratorSeed;
-    private const int DEFAULT_LIBID_START;
+    private int _lbdIDGeneratorSeed;
+    private int DEFAULT_LIBID_START;
     #endregion
 
     #region Constructors
     public Library()
     {
         _bookList = new List<Book>();
-        _libIDGeneratorSeed = 0;
-        _DEFAULT_LIBID_START = 100;
+        _lbdIDGeneratorSeed = 0;
+        DEFAULT_LIBID_START = 100;
     }
     #endregion
 
@@ -36,24 +36,16 @@ public class Library
 
     }
 
-    private int DetermineLibID()
-    {
+    // private int DetermineLibID()
 
-    }
     
-    public Book RegisterBook(string bookName, string[] bookISBN, BookType bookType, int nCopies)
-    {
+    // public Book RegisterBook(string bookName, string[] bookISBN, BookType bookType, int nCopies)
 
-    }
 
-    public Book FindBookByName(string bookName)
-    {
+    // public Book FindBookByName(string bookName)
 
-    }
 
-    public Book FindBookByISBN(string bookISBN)
-    {
+    // public Book FindBookByISBN(string bookISBN)
 
-    }
     #endregion
 }

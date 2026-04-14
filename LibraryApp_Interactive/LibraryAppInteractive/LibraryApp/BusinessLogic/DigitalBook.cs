@@ -12,10 +12,11 @@ namespace LibraryAppInteractive.BusinessLogic
         #endregion
 
         #region Constructors
-        public DigitalBook(string bookName, string bookISBN)
+        public DigitalBook(string bookName, string bookISBN) : base(bookName, bookISBN)
         {
 
         }
+
         #endregion
 
         #region Properties
@@ -23,20 +24,14 @@ namespace LibraryAppInteractive.BusinessLogic
         #endregion
 
         #region Methods
-        private DetermineLoanLicense()
-        {
+        // private DetermineLoanLicense()
 
-        }
 
-        public LibraryAsset BorrowBook()
-        {
+        // public LibraryAsset BorrowBook()
 
-        }
 
-        public ReturnBook(int libID)
-        {
+        // public ReturnBook(int libID)
 
-        }
         #endregion
     }
 }
