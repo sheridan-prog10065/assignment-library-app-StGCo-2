@@ -50,7 +50,7 @@ namespace LibraryAppInteractive.BusinessLogic
 
         public bool IsAvailable
         {
-            get { return true; }
+            get { return _status == AssetStatus.Available; }
         }
         #endregion
     }

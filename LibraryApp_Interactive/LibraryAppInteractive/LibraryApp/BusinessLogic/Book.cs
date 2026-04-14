@@ -39,31 +39,72 @@ namespace LibraryAppInteractive.BusinessLogic
         public List<string> Authors
         {
             get { return _bookAuthorList; }
+            set { _bookAuthorList= value; }
         }
 
-        public List<LibraryAsset> Assets
+        public IEnumerable<LibraryAsset> Assets
         {
             get { return _libAssetList; }
         }
         #endregion
 
         #region Methods
-       // public (bool, LibraryAsset) CheckAvailability()
+        public (bool, LibraryAsset) CheckAvailability()
+        {
+            LibraryAsset asset = _libAssetList.FirstOrDefault(iAsset => iAsset.IsAvailable);
+            return(asset != null, asset);
+        }
 
 
-       // public LibraryAsset BorrowBook()
+        public LibraryAsset BorrowBook()
+        {
+            LibraryAsset asset = _libAssetList.FirstOrDefault(iAsset => iAsset.IsAvailable);
+
+            if (asset != null)
+            {
+                asset.Status = AssetStatus.Loaned;
+                return asset;
+            }
+
+            return null;
+        }
 
 
-       // public (TimeSpan, int, decimal) ReturnBook(int libID)
+       public (TimeSpan, int, decimal) ReturnBook(int libID)
+        {
+            LibraryAsset asset = _libAssetList.FirstOrDefault(iAsset => iAsset.LibraryID == libID);
+            if(asset != null)
+            {
+                asset.Status = AssetStatus.Available;
+
+                return (TimeSpan.Zero, 0, 0m);
+            }
+            return (TimeSpan.Zero, 0, 0m);
+        }
 
 
-       // public LibraryAsset ReserveBook()
+        public LibraryAsset ReserveBook()
+        {
+            LibraryAsset asset = _libAssetList.FirstOrDefault(iAsset => iAsset.Status == AssetStatus.Available);
+            if (asset != null)
+            {
+                asset.Status = AssetStatus.Reserved;
+                return asset;
+            }
+            return null;
+        }
 
 
-       // private LibraryAsset FindLibraryAsset(int libID)
+       private LibraryAsset FindLibraryAsset(int libID)
+        {
+            return _libAssetList.FirstOrDefault(iAsset => iAsset.LibraryID==libID);
+        }
 
 
-      //  private LibraryAsset FindNextAvailableAsset()
+      private LibraryAsset FindNextAvailableAsset()
+        {
+            return _libAssetList.FirstOrDefault(iAsset => iAsset.IsAvailable);
+        }
  
         #endregion
     }
