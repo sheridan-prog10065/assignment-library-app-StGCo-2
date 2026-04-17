@@ -18,7 +18,7 @@ namespace LibraryAppInteractive.BusinessLogic
         {
             _book = book;
             _libID = libID;
-            _status = 0;
+            _status = AssetStatus.Available;
             _loanPeriod = new LoanPeriod();
         }
         #endregion

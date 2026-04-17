@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace LibraryAppInteractive.BusinessLogic
 {
@@ -56,7 +57,7 @@ namespace LibraryAppInteractive.BusinessLogic
         }
 
 
-        public LibraryAsset BorrowBook()
+        public virtual LibraryAsset BorrowBook()
         {
             LibraryAsset asset = _libAssetList.FirstOrDefault(iAsset => iAsset.IsAvailable);
 
@@ -70,7 +71,7 @@ namespace LibraryAppInteractive.BusinessLogic
         }
 
 
-       public (TimeSpan, int, decimal) ReturnBook(int libID)
+       public virtual (TimeSpan, int, decimal) ReturnBook(int libID)
         {
             LibraryAsset asset = _libAssetList.FirstOrDefault(iAsset => iAsset.LibraryID == libID);
             if(asset != null)

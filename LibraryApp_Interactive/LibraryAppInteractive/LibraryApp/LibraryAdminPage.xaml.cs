@@ -8,9 +8,11 @@ namespace LibraryAppInteractive;
 
 public partial class LibraryAdminPage : ContentPage
 {
+    private Library _library;
     public LibraryAdminPage()
     {
         InitializeComponent();
+
     }
 
    // public LibraryBrowsePage()
