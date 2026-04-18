@@ -12,10 +12,12 @@ public partial class LibraryAdminPage : ContentPage
 {
     private Library _library;
     private List<Book> _bookList;
+    private List<LibraryAsset> _assets;
     public LibraryAdminPage()
     {
         InitializeComponent();
         _bookList = new List<Book>();
+        _lstAssets.ItemsSource = _assets;
     }
 
     private async void OnRegisterBook(object sender, EventArgs e)
@@ -54,7 +56,7 @@ public partial class LibraryAdminPage : ContentPage
     {
         if (sender == _btnAsset)
         {
-
+            _lstAssets;
         }
     }
 }

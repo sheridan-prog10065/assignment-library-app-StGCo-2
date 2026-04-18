@@ -45,11 +45,17 @@ public partial class LibraryBrowsePage : ContentPage
 
     private void OnBorrowBook(object sender, EventArgs e)
     {
-        _book.BorrowBook();
+        if (sender == _btnBorrow)
+        {
+            _book.BorrowBook();
+        }
     }
 
     private void OnReturnBook(object sender, EventArgs e)
     {
-
+        if (sender == _btnReturn)
+        {
+            _book.ReturnBook();
+        }
     }
 }
