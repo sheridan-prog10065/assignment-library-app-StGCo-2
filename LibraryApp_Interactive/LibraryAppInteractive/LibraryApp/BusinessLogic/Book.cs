@@ -12,6 +12,7 @@ namespace LibraryAppInteractive.BusinessLogic
         protected string _bookISBN;
         protected List<string> _bookAuthorList;
         protected List<LibraryAsset> _libAssetList;
+        protected int _nCopies;
         #endregion
 
         #region Constructors
@@ -46,6 +47,12 @@ namespace LibraryAppInteractive.BusinessLogic
         public IEnumerable<LibraryAsset> Assets
         {
             get { return _libAssetList; }
+        }
+
+        public int Copies
+        {
+            get { return _nCopies; }
+            set { _nCopies = value; }
         }
         #endregion
 

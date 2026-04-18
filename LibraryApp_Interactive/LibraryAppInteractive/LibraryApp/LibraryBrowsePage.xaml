@@ -3,8 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LibraryAppInteractive.LibraryBrowsePage"
              Title="Browse Interactive Library">
-			 
-	<Label Text="Browse Library page for the Interactive Library App"
-	       HorizontalOptions="Center"
-	       VerticalOptions="Center"/> 
+    <Grid RowDefinitions="auto,auto,auto,auto" ColumnDefinitions="*,*,*" RowSpacing="10" Margin="10">
+        <Label Grid.Row="0" Grid.Column="0" Text="Search for book"/>
+        <Entry x:Name="entSearch" Grid.Row="0" Grid.Column="1" Text="name or ISBN" Opacity="0.5"/>
+        <Button x:Name="_btnSearch" Grid.Row="0" Grid.Column="2" Text="SEARCH"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Text="Borrowed on: "/>
+        <DatePicker x:Name="_dpStart" Grid.Row="1" Grid.Column="1"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Text="Returned on: "/>
+        <DatePicker x:Name="_dpEnd" Grid.Row="2" Grid.Column="1"/>
+        <Border Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="3">
+            <CollectionView x:Name="_lstBooks" />
+        </Border>
+    </Grid>
 </ContentPage>
