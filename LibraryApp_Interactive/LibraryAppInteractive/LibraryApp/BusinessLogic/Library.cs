@@ -44,27 +44,6 @@ namespace LibraryAppInteractive.BusinessLogic
             _bookList.Add(shield);
         }
 
-        public Book CreateBook(string bookType, string bookName, string bookISBN)
-        {
-            //TODO: Check vehicle type for NULL or Empty and throw an exception
-            if (string.IsNullOrWhiteSpace(bookType))
-                throw new ArgumentException("Cannot register book. Please select book type");
-            switch (bookType)
-            {
-                case "Paper":
-                    return new PaperBook(bookName, bookISBN);
-
-                case "Digital":
-                    return new DigitalBook(bookName, bookISBN);
-
-                case "Audio":
-                    return new DigitalBook(bookName, bookISBN);
-
-                default:
-                    Debug.Assert(false, "Unknown book type. No book was registered");
-                    throw new ArgumentException("Unknown book type. Please select different book type.");
-            }
-        }
         private int DetermineLibID()
         {
             int nextID = _libIDGeneratorSeed;

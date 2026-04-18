@@ -7,7 +7,7 @@ namespace LibraryAppInteractive.BusinessLogic
     public class DigitalBook : Book
     {
         #region Fields
-        private const int _maxBorrowDays = 30;
+        private const int _maxBorrowDays = 21;
         private const decimal _latePenaltyPerDay = 0.25m;
         #endregion
 

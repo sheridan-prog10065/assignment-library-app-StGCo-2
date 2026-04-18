@@ -11,32 +11,50 @@ namespace LibraryAppInteractive;
 public partial class LibraryAdminPage : ContentPage
 {
     private Library _library;
-    private Book _book;
+    private List<Book> _bookList;
     public LibraryAdminPage()
     {
         InitializeComponent();
+        _bookList = new List<Book>();
     }
 
-    private void OnRegisterBook(object sender, EventArgs e)
+    private async void OnRegisterBook(object sender, EventArgs e)
     {
         if (sender == _btnRegister)
         {
-            string bookName = _entName.Text;
-            string bookISBN = _entISBN.Text;
-            string bookAuthor = _entAuthor.Text;
-            int nCopies = int.Parse(_entCopies.Text);
-            BookType bookType = (BookType)_pckType.SelectedItem;
+            try
+            {
+                string bookName = _entName.Text;
+                string bookISBN = _entISBN.Text;
+                string bookAuthor = _entAuthor.Text;
+                int nCopies = int.Parse(_entCopies.Text);
+                BookType bookType = (BookType)_pckType.SelectedItem;
 
-            Book newBook = _library.CreateBook(bookType, bookName, bookISBN);
-            newBook.Authors.Add(bookAuthor);
-            newBook.Copies = nCopies;
+                Book newBook = _library.RegisterBook(bookName, bookISBN, bookAuthor, bookType, nCopies);
+                _bookList.Add(newBook);
+            }
 
-            _library.RegisterBook(newBook);
+            catch (FormatException ex)
+            {
+                await DisplayAlertAsync("Admin Page", ex.Message, "OK");
+            }
+            catch (ArgumentNullException ex)
+            {
+                await DisplayAlertAsync("Admin Page", ex.Message, "OK");
+            }
+
+            catch (Exception ex)
+            {
+                await DisplayAlertAsync("Admin Page", ex.Message, "OK");
+            }
         }
     }
 
     private void OnDisplayBookAssets(object sender, EventArgs e)
     {
+        if (sender == _btnAsset)
+        {
 
+        }
     }
 }
