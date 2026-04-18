@@ -95,8 +95,12 @@ namespace LibraryAppInteractive.BusinessLogic
             return null;
         }
 
+        public void AddAsset(LibraryAsset asset)
+        {
+            _libAssetList.Add(asset);
+        }
 
-       private LibraryAsset FindLibraryAsset(int libID)
+        private LibraryAsset FindLibraryAsset(int libID)
         {
             return _libAssetList.FirstOrDefault(iAsset => iAsset.LibraryID==libID);
         }
