@@ -5,16 +5,22 @@
              Title="Browse Interactive Library">
     <Grid RowDefinitions="auto,auto,auto,auto" ColumnDefinitions="*,*,*" RowSpacing="10" Margin="10">
         <Label Grid.Row="0" Grid.Column="0" Text="Search for book"/>
-        <Entry x:Name="entSearch" Grid.Row="0" Grid.Column="1" Text="name or ISBN" Opacity="0.5"/>
-        <Button x:Name="_btnSearch" Grid.Row="0" Grid.Column="2" Text="SEARCH"/>
+        <HorizontalStackLayout Grid.Row="0" Grid.Column="1" >
+            <Entry x:Name="_entName" Text="Book Name" Opacity="0.5"/>
+            <Entry x:Name="_entISBN" Text="Book ISBN" Opacity="0.5"/>
+        </HorizontalStackLayout>
+        <Button x:Name="_btnSearch" Grid.Row="0" Grid.Column="2" Text="SEARCH" Clicked="OnSearchBook"/>
 
         <Label Grid.Row="1" Grid.Column="0" Text="Borrowed on: "/>
         <DatePicker x:Name="_dpStart" Grid.Row="1" Grid.Column="1"/>
+        <Button x:Name="_btnBorrow" Grid.Row="1" Grid.Column="2" Text="BORROW" Clicked="OnBorrowBook"/>
 
         <Label Grid.Row="2" Grid.Column="0" Text="Returned on: "/>
         <DatePicker x:Name="_dpEnd" Grid.Row="2" Grid.Column="1"/>
+        <Button x:Name="_btnReturn" Grid.Row="2" Grid.Column="2" Text="RETURN" Clicked="OnReturnBook"/>
+
         <Border Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="3">
-            <CollectionView x:Name="_lstBooks" />
+            <CollectionView x:Name="_lstBooks" SelectionMode="Single"/>
         </Border>
     </Grid>
 </ContentPage>
