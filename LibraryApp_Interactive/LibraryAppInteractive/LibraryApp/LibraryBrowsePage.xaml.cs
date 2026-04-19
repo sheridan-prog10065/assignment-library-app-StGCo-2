@@ -86,22 +86,22 @@ public partial class LibraryBrowsePage : ContentPage
 
     private async void OnReturnBook(object sender, EventArgs e)
     {
+        if (!int.TryParse(_entID.Text, out int libID))
         {
-            if (_book == null)
-            {
-                await DisplayAlertAsync("Browse Page", "Search for a book first", "OK");
-                return;
-            }
-
-            if (!int.TryParse(_entID.Text, out int libID))
-            {
-                await DisplayAlertAsync("Browse Page", "Enter a valid asset ID.", "OK");
-                return;
-            }
-
-            var result = _book.ReturnBook(libID);
-
-            await DisplayAlertAsync("Browse Page", $"Late Period: {result.Item1.Days} days\nLate Days: {result.Item2}\nPenalty: {result.Item3:C}", "OK");
+            await DisplayAlertAsync("Browse Page", "Enter a valid asset ID.", "OK");
+            return;
         }
+
+        Book book = _library.FindBookByAssetID(libID);
+
+        if (book == null)
+        {
+            await DisplayAlertAsync("Browse Page", "No book found for that asset ID.", "OK");
+            return;
+        }
+
+        var result = _book.ReturnBook(libID);
+
+        await DisplayAlertAsync("Browse Page", $"Late Period: {result.Item1.Days} days\nLate Days: {result.Item2}\nPenalty: {result.Item3:C}", "OK");
     }
 }

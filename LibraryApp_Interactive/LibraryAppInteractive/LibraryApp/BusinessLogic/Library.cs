@@ -116,6 +116,11 @@ namespace LibraryAppInteractive.BusinessLogic
         {
             return _bookList.FirstOrDefault(book => book.ISBN == bookISBN);
         }
+            public Book FindBookByAssetID(int libID)
+        {
+            return _bookList.FirstOrDefault(book =>
+                book.Assets.Any(asset => asset.LibraryID == libID));
+        }
         #endregion
     }
 }
