@@ -23,11 +23,37 @@
         <Button x:Name="_btnRegister" Grid.Row="0" Grid.Column="2" Text="REGISTER" Clicked="OnRegisterBook"/>
 
         <Label Grid.Row="1" Grid.Column="0" Text="Book Availability"/>
-        <Entry x:Name="_entAsset" Grid.Row="1" Grid.Column="1" Text="Name or ISBN" Opacity="0.5"/>
-        <Button x:Name="_btnAsset" Grid.Row="1" Grid.Column="2" Text="Display book assets" FontSize="10" Clicked="OnDisplayBookAssets"/>
+        <HorizontalStackLayout Grid.Row="1" Grid.Column="1">
+            <Entry x:Name="_entSearchName"  Text="Name" Opacity="0.5"/>
+            <Entry x:Name="_entSearchISBN" Text="ISBN" Opacity="0.5"/>
+        </HorizontalStackLayout>
+        <Button x:Name="_btnSearch" Grid.Row="1" Grid.Column="2" Text="SEARCH" FontSize="10" Clicked="OnSearch"/>
+        
+        <Border Grid.Row="2" Grid.Column="0">
+            <CollectionView x:Name="_lstBooks" SelectionMode="Single" SelectionChanged="OnSelectedBook">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="8">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label Text="{Binding ISBN}" FontSize="12" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
 
-        <Border Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="3">
-            <CollectionView x:Name="_lstAssets" />
+        <Border Grid.Row="2" Grid.Column="1">
+            <CollectionView x:Name="_lstAssets">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="8">
+                            <Label Text="{Binding LibraryID}" FontAttributes="Bold" />
+                            <Label Text="{Binding Status}" FontSize="12" />
+                            <Label Text="{Binding IsAvailable}" FontSize="12" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Border>
     </Grid>
 </ContentPage>

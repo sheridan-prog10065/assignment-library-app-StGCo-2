@@ -25,30 +25,58 @@ namespace LibraryAppInteractive.BusinessLogic
         #endregion
 
         #region Properties
-
+        public IEnumerable<Book> Books
+        {
+            get { return _bookList; }
+        }
         #endregion
 
         #region Methods
-        private void CreateDefaultBook()
-        {
-            Book sum = new Book("The Summoning", "9780385665346");
-            sum.Authors.Add("Kelly Armstrong");
-            _bookList.Add(sum);
-
-            Book gobSlay = new Book("Goblin Slayer, Manga Volume 1", "9780316439725");
-            gobSlay.Authors.Add("Kumo Kagyu");
-            _bookList.Add(gobSlay);
-
-            Book shield = new Book("Rising of the Shield Hero, Volume 1, Light novel", "9781935548645");
-            shield.Authors.Add("Aneko Yusagi");
-            _bookList.Add(shield);
-        }
 
         private int DetermineLibID()
         {
             int nextID = _libIDGeneratorSeed;
             _libIDGeneratorSeed++;
             return nextID;
+        }
+
+        private void CreateDefaultBook()
+        {
+            // Book 1
+            Book sum = new PaperBook("The Summoning", "9780385665346");
+            sum.Authors.Add("Kelly Armstrong");
+
+            for (int i = 0; i < 3; i++) // number of copies
+            {
+                int id = DetermineLibID();
+                LibraryAsset asset = new LibraryAsset(id, sum);
+                sum.AddAsset(asset);
+            }
+            _bookList.Add(sum);
+
+            // Book 2
+            Book gobSlay = new PaperBook("Goblin Slayer, Manga Volume 1", "9780316439725");
+            gobSlay.Authors.Add("Kumo Kagyu");
+
+            for (int i = 0; i < 2; i++)
+            {
+                int id = DetermineLibID();
+                LibraryAsset asset = new LibraryAsset(id, gobSlay);
+                gobSlay.AddAsset(asset);
+            }
+            _bookList.Add(gobSlay);
+
+            // Book 3
+            Book shield = new DigitalBook("Rising of the Shield Hero, Volume 1, Light novel", "9781935548645");
+            shield.Authors.Add("Aneko Yusagi");
+
+            for (int i = 0; i < 2; i++)
+            {
+                int id = DetermineLibID();
+                LibraryAsset asset = new LibraryAsset(id, shield);
+                shield.AddAsset(asset);
+            }
+            _bookList.Add(shield);
         }
 
         public Book RegisterBook(string bookName, string bookISBN, string authors, BookType bookType, int nCopies)
@@ -76,9 +104,12 @@ namespace LibraryAppInteractive.BusinessLogic
             return newBook;
         }
 
-        public Book FIndBookByName(string bookName)
+        public List<Book> FindBooksByName(string bookName)
         {
-            return _bookList.FirstOrDefault(book => book.Name == bookName);
+            return _bookList
+                .Where(book => book.Name != null &&
+                               book.Name.Contains(bookName, StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
 
         public Book FindBookByISBN(string bookISBN)

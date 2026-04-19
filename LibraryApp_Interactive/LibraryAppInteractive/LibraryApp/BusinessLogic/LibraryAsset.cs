@@ -8,7 +8,7 @@ namespace LibraryAppInteractive.BusinessLogic
     {
         #region Fields
         private Book _book;
-        private int _libID;
+        private int  _libID;
         private AssetStatus _status;
         private LoanPeriod _loanPeriod;
         #endregion

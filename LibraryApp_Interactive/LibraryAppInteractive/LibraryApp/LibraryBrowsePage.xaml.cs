@@ -7,34 +7,50 @@ public partial class LibraryBrowsePage : ContentPage
     private Library _library;
     private Book _book;
     private List<Book> _bookList;
-    public LibraryBrowsePage()
+    public LibraryBrowsePage(Library library)
     {   
         InitializeComponent();
+        _library = library;
+        _bookList = new List<Book>();
         _lstBooks.ItemsSource = _bookList;
     }
 
-    private async Task OnSearchBook(object sender, EventArgs e)
+    private async void OnSearchBook(object sender, EventArgs e)
     {
-        if (sender == _btnSearch)
         {
-            string bookName = _entName.Text;
-            string bookISBN = _entISBN.Text;
             try
             {
-                if (_entName != null)
+                _book = null;
+
+                if (!string.IsNullOrWhiteSpace(_entName.Text))
                 {
-                    _library.FIndBookByName(bookName);
+                   _bookList =  _library.FindBooksByName(_entName.Text);
+                    _lstBooks.ItemsSource = _bookList;
                 }
 
-                if (_entISBN != null)
+                else if (!string.IsNullOrWhiteSpace(_entISBN.Text))
                 {
-                    _library.FindBookByISBN(bookISBN);
+                    _book = _library.FindBookByISBN(_entISBN.Text);
+
+                    if (_book != null)
+                    {
+                        _bookList.Clear();
+                        _bookList.Add(_book);
+                        _lstBooks.ItemsSource = null;
+                        _lstBooks.ItemsSource = _bookList;
+                    }
+                    else
+                    {
+                        await DisplayAlertAsync("Browse Page", "Enter a book name or book ISBN.", "OK");
+                        return;
+                    }            
                 }
-                return;
-            }
-            catch (ArgumentNullException ex)
-            {
-                await DisplayAlertAsync("Browse Page", ex.Message, "OK");
+
+                else
+                {
+                    await DisplayAlertAsync("Browse Page", "Book not found.", "OK");
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -43,19 +59,49 @@ public partial class LibraryBrowsePage : ContentPage
         }
     }
 
-    private void OnBorrowBook(object sender, EventArgs e)
+    private async void OnBorrowBook(object sender, EventArgs e)
     {
-        if (sender == _btnBorrow)
         {
-            _book.BorrowBook();
+            _book = _lstBooks.SelectedItem as Book;
+            if (_book == null)
+            {
+                await DisplayAlertAsync("Browse Page", "Please search and select a book first.", "OK");
+                return;
+            }
+            LibraryAsset asset = _book.BorrowBook();
+
+            if (asset != null)
+            {
+                await DisplayAlertAsync("Browse Page", $"Borrowed asset ID: {asset.LibraryID}", "OK");
+                return;
+            }
+
+            else
+            {
+                await DisplayAlertAsync("Browse Page", "No available copies.", "OK");
+                return;
+            }
         }
     }
 
-    private void OnReturnBook(object sender, EventArgs e)
+    private async void OnReturnBook(object sender, EventArgs e)
     {
-        if (sender == _btnReturn)
         {
-            _book.ReturnBook();
+            if (_book == null)
+            {
+                await DisplayAlertAsync("Browse Page", "Search for a book first", "OK");
+                return;
+            }
+
+            if (!int.TryParse(_entID.Text, out int libID))
+            {
+                await DisplayAlertAsync("Browse Page", "Enter a valid asset ID.", "OK");
+                return;
+            }
+
+            var result = _book.ReturnBook(libID);
+
+            await DisplayAlertAsync("Browse Page", $"Late Period: {result.Item1.Days} days\nLate Days: {result.Item2}\nPenalty: {result.Item3:C}", "OK");
         }
     }
 }
